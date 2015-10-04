@@ -1,0 +1,81 @@
+<%= form_for(@student) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+    <%= f.label :name, "Your Name" %>
+  </div>
+  <div class="field">
+    <%= f.label :secret %><br />
+    <%= f.text_field :secret %>
+  </div>
+  <div class="field">
+     <fieldset>
+      <legend>County</legend>
+        <%= f.radio_button :county, 'Buncombe' %> <%= f.label "person_country_buncombe", "Buncombe" %><br /> 
+        <%= f.radio_button :county, 'Madison' %> <%= f.label "person_country_madison", "Madison" %><br /> 
+        <%= f.radio_button :county, 'Haywood' %> <%= f.label "person_country_hqywood", "Haywood" %><br />
+  </fieldset>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description , :cols => 30, :rows => 10 %>
+  </div>
+  <div class="field">
+    <%= f.label :can_send_email %><br />
+    <%= f.check_box :can_send_email , {:class => 'email', :checked=>"checked"} %>
+  </div>
+
+  <div class="field">
+    <% nations = { '2010' => '2010',
+                   '2011' => '2011',
+                   '2012' => '2012',
+                   '2013' => '2013',
+                   '2014' => '2014',
+                   '2015' => '2015',
+                   '2016' => '2016',
+                   '2017' => '2017',
+                   '2018' => '2018',
+                    }%>
+  <p>
+  <%= f.label :graduation_year %><br />
+  <% list = nations.sort %>
+  <%= f.select :graduation_year, list %>
+  </p>
+
+  </div>
+  <div class="field">
+    <%= f.label :body_temperature %><br />
+    <%= f.text_field :body_temperature %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :birthday %><br />
+    <%= f.date_select :birthday %>
+  </div>
+  <div class="field">
+    <%= f.label :favorite_time %><br />
+    <%= f.time_select :favorite_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
